@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KR-BUD — strona wizytówka
 
-## Getting Started
+Jednostronicowa witryna klasy premium dla firmy **KR-BUD** (wykończenia wnętrz i brukarstwo).
+Kierunek wizualny: **Swiss Editorial** — ciepły papier, ciepły tusz, jeden akcent (bursztyn),
+oversize'owa typografia, numerowana siatka, maksymalna powściągliwość.
 
-First, run the development server:
+**Dark mode** w pełni wspierany — przełącznik w headerze (☀/☾), domyślnie wg ustawień
+systemu (`next-themes`). Motyw zmieniają wyłącznie tokeny CSS (`.dark` w `globals.css`),
+zero prefiksów `dark:`. Panele kontakt/stopka inwertują się świadomie (jasne wykończenie
+na ciemnej stronie).
+
+## Stack
+
+Next.js 16 (App Router, RSC, Turbopack) · React 19 · TypeScript (strict) · Tailwind CSS v4
+(CSS-first w `app/globals.css`) · wzorce shadcn/ui + CVA · lucide-react · `next/image`.
+
+## Uruchomienie
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm build        # produkcyjny build
+pnpm start        # serwer produkcyjny
+pnpm lint         # eslint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✍️ Co podmienić (Twoje dane)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Wszystko w jednym pliku: **`lib/site-config.ts`**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```ts
+contact: {
+  phoneDisplay: "+48 XXX XXX XXX",    // ← Twój numer (wyświetlany)
+  phoneHref: "tel:+48000000000",      // ← Twój numer (do klikania)
+  email: "kontakt@kr-bud.pl",         // ← Twój e-mail
+  area: "Twoja miejscowość + 100 km", // ← obszar działania
+}
+```
 
-## Learn More
+To samo zasila stopkę, sekcję kontaktu oraz dane strukturalne (SEO / Google).
 
-To learn more about Next.js, take a look at the following resources:
+## 🖼️ Zdjęcia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Obecnie używane są zweryfikowane zdjęcia poglądowe z Unsplash (CDN), zmapowane w
+`lib/site-config.ts` (obiekt `images`). Aby wstawić własne realizacje:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Wrzuć pliki do `public/realizacje/…`
+2. W `images` zmień `src`, np. `src: "/realizacje/taras.jpg"`
+3. Zaktualizuj `alt` (opis dla dostępności i SEO).
 
-## Deploy on Vercel
+Po dodaniu własnej domeny zdjęć — dopisz ją w `next.config.ts` (`images.remotePatterns`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Struktura
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  layout.tsx        fonty, SEO, JSON-LD, header + footer, skip-link
+  page.tsx          kompozycja sekcji
+  globals.css       design system (tokeny, paleta, animacje)
+components/
+  ui/               atomy: button (CVA + asChild), eyebrow, reveal
+  blocks/           sekcje: hero, services, guarantee, materials, why-us,
+                    gallery, contact-cta, site-header, site-footer, keyword-marquee
+lib/
+  site-config.ts    ⭐ treść, kontakt, zdjęcia, usługi
+  utils.ts          cn()
+```
+
+## Dostępność (zweryfikowane)
+
+- 1× `<h1>`, poprawna hierarchia nagłówków, `lang="pl"`
+- Focus ring na każdym elemencie interaktywnym, skip-link, focus trap w menu mobilnym (Radix)
+- Wszystkie obrazy z `alt`; brak poziomego scrolla od 375px
+- Respektowane `prefers-reduced-motion` (animacje wejścia się wyłączają)
+- Tokeny semantyczne — zero `dark:`, zero hardkodowanych kolorów
+- Focus ring czytelny w obu motywach; `color-scheme` ustawione dla natywnych kontrolek
+- `robots.txt`, `sitemap.xml`, `themeColor`, dane strukturalne JSON-LD (GeneralContractor)
