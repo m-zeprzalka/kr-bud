@@ -26,14 +26,14 @@ export function Materials() {
         <Reveal>
           <figure className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
             <Image
-              src={images.paveStacks.src}
-              alt={images.paveStacks.alt}
+              src={images.interiorMaterials.src}
+              alt={images.interiorMaterials.alt}
               fill
               sizes="(min-width: 1024px) 48vw, 100vw"
               className="object-cover"
             />
             <figcaption className="absolute left-3 top-3 rounded-sm bg-background/90 px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-foreground backdrop-blur">
-              Materiały · Kostka brukowa
+              Materiały · Wykończenia wnętrz
             </figcaption>
           </figure>
         </Reveal>

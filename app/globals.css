@@ -118,8 +118,8 @@
 
   html {
     scroll-behavior: smooth;
-    /* offset pod sticky header dla kotwic */
-    scroll-padding-top: 5rem;
+    /* offset kotwic spod sticky headera daje scroll-mt-20 na sekcjach
+       (bez scroll-padding-top, by uniknąć podwójnego offsetu) */
     -webkit-text-size-adjust: 100%;
   }
 

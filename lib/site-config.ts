@@ -1,33 +1,54 @@
 /**
- * KR-BUD — centralna konfiguracja strony.
+ * KR-BUD — centralna konfiguracja strony (single source of truth).
  *
- * ⚠️  EDYTUJ TUTAJ: dane kontaktowe poniżej to placeholdery.
- *     Podmień telefon / e-mail / obszar na prawdziwe — to jedyne miejsce.
+ * Dane kontaktowe to prawdziwe dane dwóch wykonawców:
+ *   • Grzegorz — wykończenia wnętrz (kontakt też przez WhatsApp)
+ *   • Marek    — brukarstwo / kostka
  *
- * Zdjęcia: zweryfikowane realne zdjęcia z Unsplash (CDN). Aby użyć własnych,
- * wrzuć plik do /public i zamień `src` na np. "/realizacje/taras.jpg".
+ * Zdjęcia: wyłącznie realne realizacje z /public (żadnych zewnętrznych CDN).
+ * Aby dodać zdjęcie, wrzuć plik do /public i wskaż jego ścieżkę w `images`.
  */
 
 export type SiteImage = { src: string; alt: string };
 
-/** Buduje URL Unsplash; next/image dokłada wymiary i format responsywnie. */
-const u = (id: string): string =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop`;
-
 export const siteConfig = {
   name: "KR-BUD",
   legalName: "KR-BUD",
-  tagline: "Wykończenia wnętrz i brukarstwo",
+  tagline: "Wykończenia wnętrz i brukarstwo · Puławy",
   description:
-    "Solidne wykończenia wnętrz i brukarstwo z pełną, pisemną gwarancją. Systemy GK, gładzie, malowanie, panele, układanie kostki brukowej. Bezpłatna wycena.",
+    "Wykończenia wnętrz i brukarstwo w Puławach i okolicy (do 100 km) — z pełną, pisemną gwarancją. Systemy GK, gładzie, malowanie, panele podłogowe, układanie kostki brukowej. Bezpłatna wycena i dojazd.",
   url: "https://kr-bud.pl",
 
-  // ── DANE KONTAKTOWE (placeholdery — podmień na prawdziwe) ───────────
+  // ── DANE KONTAKTOWE ─────────────────────────────────────────────────
   contact: {
-    phoneDisplay: "+48 XXX XXX XXX",
-    phoneHref: "tel:+48000000000",
-    email: "kontakt@kr-bud.pl",
-    area: "Twoja miejscowość + 100 km",
+    area: "Puławy + 100 km",
+    location: {
+      city: "Puławy",
+      postalCode: "24-100",
+      region: "województwo lubelskie",
+      country: "PL",
+      // środek Puław — do danych strukturalnych (geo / areaServed)
+      lat: 51.4866,
+      lng: 21.9686,
+    },
+    people: [
+      {
+        name: "Grzegorz",
+        role: "Wykończenia wnętrz",
+        phoneDisplay: "797 060 079",
+        phoneHref: "tel:+48797060079",
+        whatsapp: "https://wa.me/48797060079",
+        email: "thegoodpainter1984@gmail.com",
+      },
+      {
+        name: "Marek",
+        role: "Brukarstwo",
+        phoneDisplay: "731 976 191",
+        phoneHref: "tel:+48731976191",
+        whatsapp: null,
+        email: "marek.kramek@wp.pl",
+      },
+    ],
   },
 } as const;
 
@@ -38,86 +59,64 @@ export const navLinks = [
   { label: "Kontakt", href: "#kontakt" },
 ] as const;
 
-/** Zweryfikowana biblioteka zdjęć (wszystkie sprawdzone: 200 OK + content). */
+/**
+ * Biblioteka zdjęć — wyłącznie realne realizacje wnętrz z /public.
+ * (Brak zdjęć brukarstwa — sekcja brukarska ma wariant typograficzny do czasu
+ *  dostarczenia zdjęć kostki.)
+ */
 export const images = {
-  // Wnętrza
-  interiorMustard: {
-    src: u("1586023492125-27b2c045efd7"),
-    alt: "Minimalistyczny salon z musztardowym fotelem i gładkimi ścianami",
+  // Hero + sekcje
+  heroInterior: {
+    src: "/5964.jpg",
+    alt: "Jasny salon z bordowymi fotelami klubowymi i rośliną przy oknie — realizacja KR-BUD w Puławach",
   },
-  interiorLiving: {
-    src: u("1600566753086-00f18fb6b3ea"),
-    alt: "Nowoczesny salon z otwartą klatką schodową po wykończeniu",
+  interiorHallway: {
+    src: "/5970.jpg",
+    alt: "Przestronny hol z podłogą z jasnego drewna ułożoną w jodełkę i ciemnymi ościeżnicami drzwi",
   },
-  interiorWarm: {
-    src: u("1600210492486-724fe5c67fb0"),
-    alt: "Ciepły salon ze skórzaną sofą i wykończonymi powierzchniami",
-  },
-  floorHerringbone: {
-    src: u("1493809842364-78817add7ffb"),
-    alt: "Salon z podłogą w jodełkę i listwami przypodłogowymi",
-  },
-  kitchenBrass: {
-    src: u("1565538810643-b5bdb714032a"),
-    alt: "Nowoczesna kuchnia z blatem kwarcowym i mosiężną armaturą",
-  },
-  kitchenDark: {
-    src: u("1484154218962-a197022b5858"),
-    alt: "Kuchnia z białymi frontami, ciemną ścianą i drewnianą podłogą",
-  },
-  bathroomTiles: {
-    src: u("1604709177225-055f99402ea3"),
-    alt: "Łazienka wykończona wielkoformatowymi płytami w odcieniu betonu",
-  },
-  bedroomNavy: {
-    src: u("1521783988139-89397d761dce"),
-    alt: "Sypialnia premium z tapicerowanym zagłówkiem w kolorze granatu",
-  },
-  concreteFloor: {
-    src: u("1497366216548-37526070297c"),
-    alt: "Przestrzeń z gładką posadzką betonową i ścianką działową",
+  interiorMaterials: {
+    src: "/6010.jpg",
+    alt: "Luksusowy salon ze skórzanymi sofami, marmurowym kominkiem i mosiężnymi lampami",
   },
 
-  // Bryła / kontekst
-  houseDusk: {
-    src: u("1600585154340-be6161a56a0c"),
-    alt: "Nowoczesny dom o zmierzchu z rozświetlonym wnętrzem",
+  // Galeria realizacji
+  gSalon: {
+    src: "/5986.jpg",
+    alt: "Elegancki, symetryczny salon z kremowymi sofami i grafikami na beżowej ścianie",
+  },
+  gKitchen: {
+    src: "/5954.jpg",
+    alt: "Jasna kuchnia z marmurową wyspą i przeszkloną ścianą wychodzącą na patio",
+  },
+  gBedroom: {
+    src: "/6001.jpg",
+    alt: "Stylowa sypialnia z koralową ścianą akcentową i rattanowym wezgłowiem łóżka",
+  },
+  gFloor: {
+    src: "/5992.jpg",
+    alt: "Hol z ciepłą podłogą z drewna orzechowego i białą sztukaterią",
+  },
+  gCorridor: {
+    src: "/5922.jpg",
+    alt: "Jasny korytarz wejściowy z białymi przeszklonymi drzwiami i drewnianą podłogą",
+  },
+  gStairs: {
+    src: "/6025.jpg",
+    alt: "Klasyczny hol z drewnianymi schodami, beżowym chodnikiem i białą boazerią kasetonową",
+  },
+  gLiving: {
+    src: "/6007.jpg",
+    alt: "Przestronny salon z aksamitną sofą otwarty na kuchnię z jadalnią",
   },
 
-  // Brukarstwo
-  paveDriveway: {
-    src: u("1707313980602-398d13f6a9e4"),
-    alt: "Podjazd z kostki brukowej ułożonej w jodełkę",
-  },
-  paveGarden: {
-    src: u("1719805020273-dbacf7b940fd"),
-    alt: "Ścieżka z kostki brukowej prowadząca przez ogród",
-  },
-  paveTexture: {
-    src: u("1657045898661-1a56bc5a8fd2"),
-    alt: "Zbliżenie na ułożoną kostkę brukową — precyzyjne spoiny",
-  },
-  paveStacks: {
-    src: u("1777269390561-3528b8c2cfd4"),
-    alt: "Spaletowana kostka brukowa renomowanej marki gotowa do układania",
-  },
-  paveCourtyard: {
-    src: u("1710216833775-2df26e7d8870"),
-    alt: "Rozległy plac wyłożony kostką brukową",
-  },
-
-  // Proces
-  workSite: {
-    src: u("1504307651254-35680f356dfd"),
-    alt: "Ekipa KR-BUD podczas prac na budowie",
-  },
-  blueprint: {
-    src: u("1503387762-592deb58ef4e"),
-    alt: "Przygotowanie kosztorysu i planu prac na podstawie rysunku",
+  // Brukarstwo — realne zdjęcie układania kostki brukowej.
+  paving: {
+    src: "/kostka.jpg",
+    alt: "Układanie kostki brukowej na podsypce — realizacja brukarska KR-BUD w Puławach",
   },
 } as const satisfies Record<string, SiteImage>;
 
-/** Zakresy usług — rdzeń oferty. */
+/** Zakresy usług — rdzeń oferty. `image` opcjonalne (brak = wariant typograficzny). */
 export type ServiceItem = { name: string; description: string };
 export type Service = {
   index: string;
@@ -134,7 +133,7 @@ export const services: Service[] = [
     id: "wnetrza",
     title: "Wykończenia wnętrz",
     lead: "Dbamy o to, by wnętrze Twojego domu było nie tylko ładne, ale i trwałe — od stanu surowego po gotowy do zamieszkania.",
-    image: images.interiorWarm,
+    image: images.interiorHallway,
     items: [
       {
         name: "Systemy GK",
@@ -163,7 +162,7 @@ export const services: Service[] = [
     id: "brukarstwo",
     title: "Brukarstwo",
     lead: "Solidny podjazd to wizytówka Twojego domu. Klucz do sukcesu leży pod ziemią — i właśnie tam zaczynamy.",
-    image: images.paveDriveway,
+    image: images.paving,
     items: [
       {
         name: "Układanie kostki brukowej",

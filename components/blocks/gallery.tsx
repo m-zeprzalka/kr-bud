@@ -12,13 +12,13 @@ type GalleryItem = {
 };
 
 const items: GalleryItem[] = [
-  { image: images.interiorLiving, tag: "Wnętrza", span: "lg:col-span-7", ratio: "aspect-[16/10]" },
-  { image: images.paveGarden, tag: "Brukarstwo", span: "lg:col-span-5", ratio: "aspect-[16/10]" },
-  { image: images.floorHerringbone, tag: "Panele", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
-  { image: images.bathroomTiles, tag: "Wnętrza", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
-  { image: images.kitchenBrass, tag: "Wnętrza", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
-  { image: images.houseDusk, tag: "Teren", span: "lg:col-span-5", ratio: "aspect-[16/10]" },
-  { image: images.paveTexture, tag: "Brukarstwo", span: "lg:col-span-7", ratio: "aspect-[16/10]" },
+  { image: images.gSalon, tag: "Salon", span: "lg:col-span-7", ratio: "aspect-[16/10]" },
+  { image: images.gKitchen, tag: "Kuchnia", span: "lg:col-span-5", ratio: "aspect-[16/10]" },
+  { image: images.gBedroom, tag: "Sypialnia", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
+  { image: images.gFloor, tag: "Podłogi", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
+  { image: images.gCorridor, tag: "Korytarz", span: "lg:col-span-4", ratio: "aspect-[4/5]" },
+  { image: images.gStairs, tag: "Schody", span: "lg:col-span-5", ratio: "aspect-[16/10]" },
+  { image: images.gLiving, tag: "Strefa dzienna", span: "lg:col-span-7", ratio: "aspect-[16/10]" },
 ];
 
 export function Gallery() {
@@ -26,17 +26,10 @@ export function Gallery() {
     <section id="realizacje" className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
         <Reveal>
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <Eyebrow>Realizacje</Eyebrow>
-              <h2 className="mt-6 max-w-xl text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
-                Efekty, które mówią same za siebie.
-              </h2>
-            </div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              Galeria poglądowa
-            </p>
-          </div>
+          <Eyebrow>Realizacje</Eyebrow>
+          <h2 className="mt-6 max-w-xl text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Efekty, które mówią same za siebie.
+          </h2>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-12">

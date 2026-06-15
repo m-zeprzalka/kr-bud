@@ -14,7 +14,7 @@ export function Hero() {
             <Reveal>
               <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 <span className="h-px w-8 bg-brand" aria-hidden="true" />
-                Wykończenia wnętrz · Brukarstwo
+                Wykończenia wnętrz · Brukarstwo · Puławy
               </div>
             </Reveal>
 
@@ -37,7 +37,8 @@ export function Hero() {
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 Wykonawca, który bierze pełną odpowiedzialność za swoją pracę.
                 Zrealizujemy metamorfozę wnętrza i profesjonalnie zagospodarujemy
-                teren wokół domu — z rzetelnością, której możesz zaufać.
+                teren wokół domu w Puławach i okolicy — z rzetelnością, której
+                możesz zaufać.
               </p>
             </Reveal>
 
@@ -54,7 +55,7 @@ export function Hero() {
 
             <Reveal delay={320}>
               <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Pełna pisemna gwarancja · Bezpłatny dojazd i kosztorys
+                Puławy + 100 km · Pełna pisemna gwarancja · Bezpłatny dojazd
               </p>
             </Reveal>
           </div>
@@ -63,8 +64,8 @@ export function Hero() {
           <Reveal delay={200} className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-muted">
               <Image
-                src={images.interiorMustard.src}
-                alt={images.interiorMustard.alt}
+                src={images.heroInterior.src}
+                alt={images.heroInterior.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 40vw, 100vw"

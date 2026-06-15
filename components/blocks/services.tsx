@@ -76,8 +76,12 @@ export function Services() {
         <Reveal>
           <Eyebrow>Usługi</Eyebrow>
           <h2 className="mt-6 max-w-2xl text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Dwa rzemiosła, jeden standard wykonania.
+            Wykończenia wnętrz i brukarstwo w Puławach.
           </h2>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Działamy w Puławach i okolicy do 100 km. Dwa rzemiosła, jeden standard
+            wykonania — z pełną, pisemną gwarancją.
+          </p>
         </Reveal>
 
         <div className="mt-16 flex flex-col gap-20 lg:mt-20 lg:gap-28">
